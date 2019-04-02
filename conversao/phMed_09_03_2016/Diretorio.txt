@@ -1,0 +1,2 @@
+Database=SECRETARIA-PC:c:\phMed\Base.fdb
+Diretorio=SECRETARIA-PC:c:\phMed

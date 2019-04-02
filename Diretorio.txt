@@ -1,0 +1,1 @@
+Database=D:\Projetos\Delphi\phMedNew\Base.fdb

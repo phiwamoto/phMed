@@ -1,0 +1,39 @@
+object XTelaLoginF: TXTelaLoginF
+  Left = 0
+  Top = 0
+  AutoSize = True
+  BorderIcons = []
+  Caption = 'XTelaLoginF'
+  ClientHeight = 202
+  ClientWidth = 424
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Arial'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 14
+  object PnlDado: TPanel
+    Left = 0
+    Top = 0
+    Width = 424
+    Height = 162
+    Align = alClient
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 0
+  end
+  object PnlBotao: TPanel
+    Left = 0
+    Top = 162
+    Width = 424
+    Height = 40
+    Align = alBottom
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 1
+  end
+end
