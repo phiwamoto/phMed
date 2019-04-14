@@ -405,6 +405,7 @@ object DmRotinaF: TDmRotinaF
         '            ,CAST(LEFT( (( (CURRENT_DATE - PAC.DATANASCIMENTO)-1' +
         ' ) / 365.25), 3) AS INT) PACIENTEIDADE'
       '            ,PAC.EMAIL AS PACIENTEEMAIL'
+      '            ,PAC.INDICACAO AS PACIENTEINDICACAO'
       
         '            ,(CIDPAC.CIDADE || '#39' - '#39' || CIDPAC.UF) AS PACIENTECI' +
         'DADEUF'
@@ -511,6 +512,12 @@ object DmRotinaF: TDmRotinaF
       FieldName = 'PACIENTEIDADE'
       ProviderFlags = []
     end
+    object QryEvolucaoClinicaPACIENTEINDICACAO: TStringField
+      DisplayLabel = 'Indica'#231#227'o'
+      FieldName = 'PACIENTEINDICACAO'
+      ProviderFlags = []
+      Size = 250
+    end
     object QryEvolucaoClinicaPACIENTEEMAIL: TStringField
       DisplayLabel = 'Email'
       FieldName = 'PACIENTEEMAIL'
@@ -550,6 +557,57 @@ object DmRotinaF: TDmRotinaF
       DisplayLabel = 'Celular'
       FieldName = 'DOUTORCELULAR'
       ProviderFlags = []
+    end
+    object QryEvolucaoClinicaIDADE: TSmallintField
+      DisplayLabel = 'Idade'
+      FieldName = 'IDADE'
+    end
+    object QryEvolucaoClinicaALTURA: TFMTBCDField
+      DisplayLabel = 'Altura'
+      FieldName = 'ALTURA'
+      Precision = 15
+      Size = 4
+    end
+    object QryEvolucaoClinicaPESO: TFMTBCDField
+      DisplayLabel = 'Peso'
+      FieldName = 'PESO'
+      Precision = 15
+      Size = 4
+    end
+    object QryEvolucaoClinicaIMC: TFMTBCDField
+      FieldName = 'IMC'
+      Precision = 15
+      Size = 4
+    end
+    object QryEvolucaoClinicaTABAGISMO: TStringField
+      DisplayLabel = 'Tabagismo'
+      FieldName = 'TABAGISMO'
+      Size = 250
+    end
+    object QryEvolucaoClinicaDOENCASEMTRATAMENTO: TStringField
+      DisplayLabel = 'Doen'#231'as em Tratamento'
+      FieldName = 'DOENCASEMTRATAMENTO'
+      Size = 250
+    end
+    object QryEvolucaoClinicaALERGIA: TStringField
+      DisplayLabel = 'Alergia'
+      FieldName = 'ALERGIA'
+      Size = 250
+    end
+    object QryEvolucaoClinicaCIRURGIASPREVIA: TStringField
+      DisplayLabel = 'Cirurgias Pr'#233'via'
+      FieldName = 'CIRURGIASPREVIA'
+      Size = 250
+    end
+    object QryEvolucaoClinicaQUEIXAPRINCIPAL: TStringField
+      DisplayLabel = 'Queixa Principal'
+      FieldName = 'QUEIXAPRINCIPAL'
+      Size = 250
+    end
+    object QryEvolucaoClinicaCONDUTA: TStringField
+      DisplayLabel = 'Conduta'
+      FieldName = 'CONDUTA'
+      Size = 250
     end
   end
   object DspAtestadoMedico: TDataSetProvider

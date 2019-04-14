@@ -440,6 +440,17 @@ type
     QryExameDATAINCLUSAO: TDateField;
     QryExameDESCRICAO: TStringField;
     QryExameSITUACAOREGISTRO: TStringField;
+    QryEvolucaoClinicaIDADE: TSmallintField;
+    QryEvolucaoClinicaALTURA: TFMTBCDField;
+    QryEvolucaoClinicaPESO: TFMTBCDField;
+    QryEvolucaoClinicaIMC: TFMTBCDField;
+    QryEvolucaoClinicaTABAGISMO: TStringField;
+    QryEvolucaoClinicaDOENCASEMTRATAMENTO: TStringField;
+    QryEvolucaoClinicaALERGIA: TStringField;
+    QryEvolucaoClinicaCIRURGIASPREVIA: TStringField;
+    QryEvolucaoClinicaQUEIXAPRINCIPAL: TStringField;
+    QryEvolucaoClinicaCONDUTA: TStringField;
+    QryEvolucaoClinicaPACIENTEINDICACAO: TStringField;
     procedure DspAgendaFotoItemBeforeUpdateRecord(Sender: TObject;
       SourceDS: TDataSet; DeltaDS: TCustomClientDataSet;
       UpdateKind: TUpdateKind; var Applied: Boolean);

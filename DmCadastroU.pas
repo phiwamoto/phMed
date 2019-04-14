@@ -189,6 +189,7 @@ type
     QryUsuarioSENHA: TStringField;
     QryUsuarioSITUACAOREGISTRO: TStringField;
     QryPacienteConvenioDATAINCLUSAO: TDateField;
+    QryPacienteINDICACAO: TStringField;
     procedure DspClinicaBeforeUpdateRecord(Sender: TObject; SourceDS: TDataSet;
       DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind;
       var Applied: Boolean);

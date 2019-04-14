@@ -1,6 +1,8 @@
 inherited OpeAgendaConsultaF: TOpeAgendaConsultaF
   Caption = 'Agenda de Consulta'
   OnClose = FormClose
+  ExplicitWidth = 960
+  ExplicitHeight = 610
   PixelsPerInch = 96
   TextHeight = 15
   inherited PnlBotao: TPanel
@@ -725,8 +727,8 @@ inherited OpeAgendaConsultaF: TOpeAgendaConsultaF
     Params = <>
     ProviderName = 'DspConsultaAgenda'
     RemoteServer = DmRotinaF.LocalConnection
-    Left = 304
-    Top = 336
+    Left = 312
+    Top = 360
   end
   object cxStyleRepository: TcxStyleRepository
     Left = 544

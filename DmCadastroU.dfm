@@ -141,6 +141,11 @@ object DmCadastroF: TDmCadastroF
       ProviderFlags = []
       Size = 50
     end
+    object QryPacienteINDICACAO: TStringField
+      DisplayLabel = 'Indica'#231#227'o'
+      FieldName = 'INDICACAO'
+      Size = 250
+    end
   end
   object DspCidade: TDataSetProvider
     DataSet = QryCidade

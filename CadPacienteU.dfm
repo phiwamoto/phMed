@@ -1,5 +1,7 @@
 inherited CadPacienteF: TCadPacienteF
   Caption = 'Cadastro de Paciente'
+  ExplicitWidth = 960
+  ExplicitHeight = 610
   PixelsPerInch = 96
   TextHeight = 15
   inherited PnlTelaCadastro: TPanel
@@ -127,6 +129,13 @@ inherited CadPacienteF: TCadPacienteF
           Width = 18
           Height = 15
           Caption = 'RG'
+        end
+        object LblIndicacao: TLabel
+          Left = 550
+          Top = 188
+          Width = 53
+          Height = 15
+          Caption = 'Indica'#231#227'o'
         end
         object DbDataInclusao: TcxDBDateEdit
           Left = 10
@@ -313,8 +322,16 @@ inherited CadPacienteF: TCadPacienteF
           DataBinding.DataSource = DsPaciente
           Properties.ValueChecked = '1'
           Properties.ValueUnchecked = '0'
-          TabOrder = 18
+          TabOrder = 19
           Width = 50
+        end
+        object DbIndicacao: TcxDBTextEdit
+          Left = 550
+          Top = 203
+          DataBinding.DataField = 'INDICACAO'
+          DataBinding.DataSource = DsPaciente
+          TabOrder = 18
+          Width = 360
         end
       end
       object TsConvenio: TcxTabSheet
@@ -852,6 +869,11 @@ inherited CadPacienteF: TCadPacienteF
     end
     object CdsPacienteQryPacienteConvenio: TDataSetField
       FieldName = 'QryPacienteConvenio'
+    end
+    object CdsPacienteINDICACAO: TStringField
+      DisplayLabel = 'Indica'#231#227'o'
+      FieldName = 'INDICACAO'
+      Size = 250
     end
   end
   object DsPacienteConvenio: TDataSource

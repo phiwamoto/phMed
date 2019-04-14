@@ -1,5 +1,7 @@
 inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
   Caption = 'SmdEvolucaoClinicaF'
+  ExplicitWidth = 960
+  ExplicitHeight = 550
   PixelsPerInch = 96
   TextHeight = 15
   inherited PnlFundo: TPanel
@@ -11,7 +13,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
       end
     end
     inherited PnlBotao: TPanel
-      object BtnSelecionar: TcxButton
+      object BtnConfirmarRascunho: TcxButton
         Left = 690
         Top = 6
         Width = 150
@@ -60,7 +62,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        OnClick = BtnSelecionarClick
+        OnClick = BtnConfirmarRascunhoClick
       end
       object BtnCancelar: TcxButton
         Left = 845
@@ -113,8 +115,8 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
         ParentFont = False
         OnClick = BtnCancelarClick
       end
-      object cxButton1: TcxButton
-        Left = 535
+      object BtnConfirmarDefinitivo: TcxButton
+        Left = 534
         Top = 6
         Width = 150
         Height = 25
@@ -162,7 +164,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
         Font.Name = 'Arial'
         Font.Style = []
         ParentFont = False
-        OnClick = cxButton1Click
+        OnClick = BtnConfirmarDefinitivoClick
       end
     end
     inherited PnlFiltros: TPanel
@@ -189,10 +191,11 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
         object TsPrincipal: TcxTabSheet
           Caption = 'Principal'
           ImageIndex = 0
-          object GbInformacoesDoPaciente: TcxGroupBox
-            Left = 10
-            Top = 5
-            Caption = ' Informa'#231#245'es do Paciente '
+          object GbEvolucaoClinicaAtual: TcxGroupBox
+            Left = 0
+            Top = 200
+            Align = alClient
+            Caption = ' Evolu'#231#227'o Cl'#237'nica do Paciente '
             ParentFont = False
             Style.BorderColor = clBlack
             Style.BorderStyle = ebsSingle
@@ -206,9 +209,51 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
             StyleDisabled.Color = clWhite
             StyleDisabled.TextColor = clBlack
             TabOrder = 0
+            Height = 255
+            Width = 948
+            object DbEvolucaoClinica: TcxDBMemo
+              Left = 2
+              Top = 20
+              Align = alClient
+              DataBinding.DataField = 'EVOLUCAOCLINICA'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Properties.ScrollBars = ssVertical
+              Style.BorderStyle = ebsNone
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clWindowText
+              Style.Font.Height = -13
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 0
+              OnEnter = DbEvolucaoClinicaEnter
+              OnExit = DbEvolucaoClinicaExit
+              Height = 233
+              Width = 944
+            end
+          end
+          object GbInformacoesPaciente: TcxGroupBox
+            Left = 0
+            Top = 0
+            Align = alTop
+            Caption = ' Informa'#231#245'es do Paciente '
+            ParentFont = False
+            Style.BorderColor = clBlack
+            Style.BorderStyle = ebsSingle
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlack
+            Style.Font.Height = -12
+            Style.Font.Name = 'Arial'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
+            StyleDisabled.BorderColor = clBlack
+            StyleDisabled.Color = clWhite
+            StyleDisabled.TextColor = clBlack
+            TabOrder = 1
             Height = 100
-            Width = 930
-            object LblRG: TLabel
+            Width = 948
+            object LblPacienteRG: TLabel
               Left = 280
               Top = 20
               Width = 15
@@ -221,7 +266,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object LblCPF: TLabel
+            object LblPacienteCPF: TLabel
               Left = 390
               Top = 20
               Width = 19
@@ -234,7 +279,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object LblTelefone1: TLabel
+            object LblPacienteTelefone01: TLabel
               Left = 500
               Top = 20
               Width = 50
@@ -247,7 +292,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object LblTelefone2: TLabel
+            object LblPacienteTelefone02: TLabel
               Left = 605
               Top = 20
               Width = 50
@@ -260,7 +305,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object LblPaciente: TLabel
+            object LblPacienteNome: TLabel
               Left = 10
               Top = 20
               Width = 41
@@ -273,7 +318,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object LblEmail: TLabel
+            object LblPacienteEmail: TLabel
               Left = 10
               Top = 55
               Width = 24
@@ -286,7 +331,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object DbNomePaciente: TDBText
+            object DbPacienteNome: TDBText
               Left = 10
               Top = 35
               Width = 260
@@ -302,7 +347,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbtRG: TDBText
+            object DbPacienteRG: TDBText
               Left = 280
               Top = 35
               Width = 100
@@ -318,7 +363,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbtCPF: TDBText
+            object DbPacienteCPF: TDBText
               Left = 390
               Top = 35
               Width = 100
@@ -334,7 +379,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbtTelefone1: TDBText
+            object DbPacienteTelefone01: TDBText
               Left = 500
               Top = 35
               Width = 95
@@ -350,7 +395,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbtTelefone2: TDBText
+            object DbPacienteTelefone02: TDBText
               Left = 605
               Top = 35
               Width = 95
@@ -366,7 +411,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbtEmail: TDBText
+            object DbPacienteEmail: TDBText
               Left = 10
               Top = 70
               Width = 260
@@ -382,7 +427,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object DbDataNascimento: TDBText
+            object DbPacienteDataNascimento: TDBText
               Left = 710
               Top = 35
               Width = 100
@@ -398,7 +443,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object LblDataNascimento: TLabel
+            object LblPacienteDataNascimento: TLabel
               Left = 710
               Top = 20
               Width = 96
@@ -411,7 +456,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
-            object DbIdade: TDBText
+            object DbPacienteIdade: TDBText
               Left = 830
               Top = 35
               Width = 80
@@ -427,7 +472,7 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               ParentColor = False
               ParentFont = False
             end
-            object LblIdade: TLabel
+            object LblPacienteIdade: TLabel
               Left = 830
               Top = 20
               Width = 26
@@ -469,11 +514,41 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
               Font.Style = []
               ParentFont = False
             end
+            object LblPacienteIndicacao: TLabel
+              Left = 500
+              Top = 55
+              Width = 46
+              Height = 14
+              Caption = 'Indica'#231#227'o'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object DbPacienteIndicacao: TDBText
+              Left = 500
+              Top = 70
+              Width = 200
+              Height = 17
+              Color = clWhite
+              DataField = 'PACIENTEINDICACAO'
+              DataSource = DsEvolucaoClinica
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlue
+              Font.Height = -13
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
           end
-          object GbEvolucaoClinicaAtual: TcxGroupBox
-            Left = 10
-            Top = 111
-            Caption = ' Evolu'#231#227'o Cl'#237'nica do Paciente '
+          object GbInformacoesDeAtendimento: TcxGroupBox
+            Left = 0
+            Top = 100
+            Align = alTop
+            Caption = ' Informa'#231#245'es Atendimento '
             ParentFont = False
             Style.BorderColor = clBlack
             Style.BorderStyle = ebsSingle
@@ -486,29 +561,341 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
             StyleDisabled.BorderColor = clBlack
             StyleDisabled.Color = clWhite
             StyleDisabled.TextColor = clBlack
-            TabOrder = 1
-            Height = 335
-            Width = 930
-            object DbEvolucaoClinica: TcxDBMemo
-              Left = 2
-              Top = 20
-              Align = alClient
-              DataBinding.DataField = 'EVOLUCAOCLINICA'
+            TabOrder = 2
+            Height = 100
+            Width = 948
+            object Label1: TLabel
+              Left = 10
+              Top = 15
+              Width = 31
+              Height = 15
+              Caption = 'Idade'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblAltura: TLabel
+              Left = 80
+              Top = 15
+              Width = 31
+              Height = 15
+              Caption = 'Altura'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblPeso: TLabel
+              Left = 150
+              Top = 15
+              Width = 29
+              Height = 15
+              Caption = 'Peso'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblIMC: TLabel
+              Left = 220
+              Top = 15
+              Width = 21
+              Height = 15
+              Caption = 'IMC'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblTabagismo: TLabel
+              Left = 290
+              Top = 15
+              Width = 62
+              Height = 15
+              Caption = 'Tabagismo'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblDoencaEmTratamento: TLabel
+              Left = 500
+              Top = 15
+              Width = 130
+              Height = 15
+              Caption = 'Doen'#231'a em Tratamento'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblAlergia: TLabel
+              Left = 720
+              Top = 15
+              Width = 38
+              Height = 15
+              Caption = 'Alergia'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblCirurgiaPrevia: TLabel
+              Left = 10
+              Top = 55
+              Width = 81
+              Height = 15
+              Caption = 'Cirurgia Pr'#233'via'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblQueixaPrincipal: TLabel
+              Left = 260
+              Top = 55
+              Width = 89
+              Height = 15
+              Caption = 'Queixa Principal'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object LblConduta: TLabel
+              Left = 510
+              Top = 55
+              Width = 47
+              Height = 15
+              Caption = 'Conduta'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clBlack
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+            end
+            object cxDBTextEdit1: TcxDBTextEdit
+              Left = 10
+              Top = 30
+              DataBinding.DataField = 'IDADE'
               DataBinding.DataSource = DsEvolucaoClinica
               ParentFont = False
-              Properties.ScrollBars = ssVertical
-              Style.BorderStyle = ebsNone
               Style.Font.Charset = ANSI_CHARSET
-              Style.Font.Color = clWindowText
-              Style.Font.Height = -13
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
               Style.Font.Name = 'Arial'
               Style.Font.Style = []
               Style.IsFontAssigned = True
               TabOrder = 0
-              OnEnter = DbEvolucaoClinicaEnter
-              OnExit = DbEvolucaoClinicaExit
-              Height = 313
-              Width = 926
+              Width = 60
+            end
+            object DbAltura: TcxDBTextEdit
+              Left = 80
+              Top = 30
+              DataBinding.DataField = 'ALTURA'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Properties.OnChange = DbAlturaPropertiesChange
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 1
+              Width = 60
+            end
+            object DbPeso: TcxDBTextEdit
+              Left = 150
+              Top = 30
+              DataBinding.DataField = 'PESO'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Properties.OnChange = DbPesoPropertiesChange
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 2
+              Width = 60
+            end
+            object DbIMC: TcxDBTextEdit
+              Left = 220
+              Top = 30
+              DataBinding.DataField = 'IMC'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 3
+              Width = 60
+            end
+            object DbTabagismo: TcxDBTextEdit
+              Left = 290
+              Top = 30
+              DataBinding.DataField = 'TABAGISMO'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 4
+              Width = 200
+            end
+            object DbDoencaEmTratamento: TcxDBTextEdit
+              Left = 500
+              Top = 30
+              DataBinding.DataField = 'DOENCASEMTRATAMENTO'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 5
+              Width = 210
+            end
+            object DbAlergia: TcxDBTextEdit
+              Left = 720
+              Top = 30
+              DataBinding.DataField = 'ALERGIA'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 6
+              Width = 220
+            end
+            object DbCirurgiaPrevia: TcxDBTextEdit
+              Left = 10
+              Top = 70
+              DataBinding.DataField = 'CIRURGIASPREVIA'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 7
+              Width = 240
+            end
+            object DbQueixaPrincipal: TcxDBTextEdit
+              Left = 260
+              Top = 71
+              DataBinding.DataField = 'QUEIXAPRINCIPAL'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 8
+              Width = 240
+            end
+            object DbConduta: TcxDBTextEdit
+              Left = 510
+              Top = 71
+              DataBinding.DataField = 'CONDUTA'
+              DataBinding.DataSource = DsEvolucaoClinica
+              ParentFont = False
+              Style.Font.Charset = ANSI_CHARSET
+              Style.Font.Color = clBlack
+              Style.Font.Height = -12
+              Style.Font.Name = 'Arial'
+              Style.Font.Style = []
+              Style.IsFontAssigned = True
+              TabOrder = 9
+              Width = 240
+            end
+            object BtnPreencherEvolucaoClinica: TcxButton
+              Left = 756
+              Top = 71
+              Width = 184
+              Height = 22
+              Caption = 'Preencher Evolu'#231#227'o Cl'#237'nica'
+              Glyph.Data = {
+                36040000424D3604000000000000360000002800000010000000100000000100
+                2000000000000004000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                000000000000000000000011001F006700C7027003D8001C0035000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                00000000000000150021027F03DF16AF2BFF14B02AFF048206EF002000370000
+                0000000000000000000000000000000000000000000000000000000000000000
+                000000180022028503E018B234FF16B12FFF13AD2AFF12B028FF038406F00021
+                0038000000000000000000000000000000000000000000000000000000000018
+                0123028B04E11DB73DFF1CB639FF19B435FF3DBF53FF18B231FF12B029FF0384
+                07F1002100390000000000000000000000000000000000000000000000001693
+                21DC20BA45FF1FB942FF1CBB3EFF009A03FF1C8610FF55C767FF18B331FF13B1
+                2AFF048507F10022003B0000000000000000000000000000000000000000209E
+                31E350CC70FF1DBD44FF00A102FF9E866EFFCF8395FF168B0EFF53C866FF18B2
+                32FF13B12BFF048608F10023003C000000000000000000000000000000000028
+                063B14A42CE012B227FFA18F75FFCE8E97FFCB9195FFD08B97FF168C0DFF52C7
+                65FF18B434FF14B22CFF048808F20024003D0000000000000000000000000B06
+                0811854755CECE8894FFD2969CFFD39FA0FFAF7F80FFDCB1B5FFD995A0FF178C
+                0EFF51C765FF1AB335FF14B32DFF04890AF3001E003700000000000000003F2A
+                2A6BCA9F9FFFD09C9CFFD9A6A6FFA67474F83622225D7B5151D0E4BABEFFDD98
+                A3FF178D0DFF50C665FF1DB638FF14B12EFF0047008D00000000000000001B11
+                1126AE8383F2E1BABAFFB07C7CF93622224D000000000D0808147F5556D2E5BC
+                C0FFDD98A3FF158F0CFF3AC04EFF009505F7001D003400000000000000000000
+                00002217172B6342428C332121420000000000000000000000000E0909158457
+                57D4E4BABEFFD3939BFF6E8E4EFF74574BE314090C2100000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000F0A
+                0A17885B5CD5DDB6B8FFCA8F94FFBD8488FF774E4FCE00000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000120C0C188C6060D7D6B3B3FFC09090FF7C5353D000000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                000000000000110C0C1A845B5BCE8C6262DA2015153500000000000000000000
+                0000000000000000000000000000000000000000000000000000000000000000
+                0000000000000000000000000000000000000000000000000000}
+              Spacing = 0
+              TabOrder = 10
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+              OnClick = BtnPreencherEvolucaoClinicaClick
             end
           end
         end
@@ -561,8 +948,8 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
   end
   object DsEvolucaoClinica: TDataSource
     DataSet = CdsEvolucaoClinica
-    Left = 464
-    Top = 264
+    Left = 640
+    Top = 360
   end
   object CdsEvolucaoClinica: TClientDataSet
     Aggregates = <>
@@ -570,8 +957,8 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
     ProviderName = 'DspEvolucaoClinica'
     RemoteServer = DmRotinaF.LocalConnection
     AfterInsert = CdsEvolucaoClinicaAfterInsert
-    Left = 464
-    Top = 248
+    Left = 640
+    Top = 344
     object CdsEvolucaoClinicaIDPACIENTEEVOLUCAO: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'IDPACIENTEEVOLUCAO'
@@ -654,6 +1041,12 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
       FieldName = 'PACIENTEIDADE'
       ProviderFlags = []
     end
+    object CdsEvolucaoClinicaPACIENTEINDICACAO: TStringField
+      DisplayLabel = 'Indica'#231#227'o'
+      FieldName = 'PACIENTEINDICACAO'
+      ProviderFlags = []
+      Size = 250
+    end
     object CdsEvolucaoClinicaPACIENTEEMAIL: TStringField
       DisplayLabel = 'Email'
       FieldName = 'PACIENTEEMAIL'
@@ -693,6 +1086,57 @@ inherited SmdEvolucaoClinicaF: TSmdEvolucaoClinicaF
       DisplayLabel = 'Celular'
       FieldName = 'DOUTORCELULAR'
       ProviderFlags = []
+    end
+    object CdsEvolucaoClinicaIDADE: TSmallintField
+      DisplayLabel = 'Idade'
+      FieldName = 'IDADE'
+    end
+    object CdsEvolucaoClinicaALTURA: TFMTBCDField
+      DisplayLabel = 'Altura'
+      FieldName = 'ALTURA'
+      Precision = 15
+      Size = 4
+    end
+    object CdsEvolucaoClinicaPESO: TFMTBCDField
+      DisplayLabel = 'Peso'
+      FieldName = 'PESO'
+      Precision = 15
+      Size = 4
+    end
+    object CdsEvolucaoClinicaIMC: TFMTBCDField
+      FieldName = 'IMC'
+      Precision = 15
+      Size = 4
+    end
+    object CdsEvolucaoClinicaTABAGISMO: TStringField
+      DisplayLabel = 'Tabagismo'
+      FieldName = 'TABAGISMO'
+      Size = 250
+    end
+    object CdsEvolucaoClinicaDOENCASEMTRATAMENTO: TStringField
+      DisplayLabel = 'Doen'#231'as em Tratamento'
+      FieldName = 'DOENCASEMTRATAMENTO'
+      Size = 250
+    end
+    object CdsEvolucaoClinicaALERGIA: TStringField
+      DisplayLabel = 'Alergia'
+      FieldName = 'ALERGIA'
+      Size = 250
+    end
+    object CdsEvolucaoClinicaCIRURGIASPREVIA: TStringField
+      DisplayLabel = 'Cirurgias Pr'#233'via'
+      FieldName = 'CIRURGIASPREVIA'
+      Size = 250
+    end
+    object CdsEvolucaoClinicaQUEIXAPRINCIPAL: TStringField
+      DisplayLabel = 'Queixa Principal'
+      FieldName = 'QUEIXAPRINCIPAL'
+      Size = 250
+    end
+    object CdsEvolucaoClinicaCONDUTA: TStringField
+      DisplayLabel = 'Conduta'
+      FieldName = 'CONDUTA'
+      Size = 250
     end
   end
 end

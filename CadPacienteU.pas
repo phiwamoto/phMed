@@ -110,6 +110,9 @@ type
     CbPrincipalConvenio: TcxDBCheckBox;
     BtnAlterarConvenio: TcxButton;
     CdsPacienteConvenioDATAINCLUSAO: TDateField;
+    DbIndicacao: TcxDBTextEdit;
+    LblIndicacao: TLabel;
+    CdsPacienteINDICACAO: TStringField;
     procedure AcaoIncluirExecute(Sender: TObject);
     procedure CdsPacienteAfterInsert(DataSet: TDataSet);
     procedure AcaoAlterarExecute(Sender: TObject);
@@ -560,7 +563,9 @@ begin
       TRotinaGenerica.TentaFocar(DbNome);
       Result := False;
     end
-    else if TPessoa.nomeJaPossuiCadastro(CdsPaciente.FieldByName('NOME').AsString) and (not TSmdValidadorPacienteDuplicadoF.valida(CdsPaciente.FieldByName('NOME').AsString)) then
+    else if (Self.getOperacaoTela in [opIncluir]) and
+      (TPessoa.nomeJaPossuiCadastro(CdsPaciente.FieldByName('NOME').AsString)) and
+      (not TSmdValidadorPacienteDuplicadoF.valida(CdsPaciente.FieldByName('NOME').AsString))  then
     begin
       TRotinaGenerica.TentaFocar(DbNome);
       Result := False;

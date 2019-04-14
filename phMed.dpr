@@ -134,7 +134,7 @@ begin
 
 
   Application.Initialize;
-  HprevHist := FindWindow(Nil, PChar('Advogado Difícil - << phSistemas - Sistemas Personalizados (44) 8822-4989 >>'));
+  HprevHist := FindWindow(Nil, PChar('phMed - << phSistemas - Sistemas Personalizados (44) 8822-4989 >>'));
   if HprevHist <> 0 then begin
     Application.MessageBox('O sistema já está em execução!', 'Verifique', MB_OK);
     ExitProcess(0);
